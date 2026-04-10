@@ -9,7 +9,8 @@ import {
   BookOpen, 
   GraduationCap, 
   LogOut,
-  Sparkles
+  Sparkles,
+  MessageSquare
 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 
@@ -35,6 +36,7 @@ export default function Sidebar() {
     { name: 'Materials', href: '/mentor/materials', icon: BookOpen },
     { name: 'Tests', href: '/mentor/tests', icon: GraduationCap },
     { name: 'Formula Sheets', href: '/mentor/formula-sheets', icon: Sparkles },
+    { name: 'Doubts', href: '/mentor/doubts', icon: MessageSquare },
   ]
 
   return (
