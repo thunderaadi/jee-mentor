@@ -76,6 +76,8 @@ export default function MentorAssignmentsPage() {
       setAssignments(snap.docs.map(d => ({ id: d.id, ...d.data() })));
     } catch (err) {
       console.error("Error loading assignments:", err);
+      // This will show a link in the console to create the required Firestore index
+      alert("System Syncing: " + err.message);
     } finally {
       setLoading(false)
     }
