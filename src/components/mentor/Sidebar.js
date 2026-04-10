@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { 
   LayoutDashboard, 
   Users, 
@@ -15,7 +15,17 @@ import { useAuth } from '@/contexts/AuthContext'
 
 export default function Sidebar() {
   const pathname = usePathname()
+  const router = useRouter()
   const { logout } = useAuth()
+
+  const handleLogout = async () => {
+    try {
+      await logout()
+      router.push('/login')
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   const links = [
     { name: 'Dashboard', href: '/mentor', icon: LayoutDashboard },
@@ -56,7 +66,7 @@ export default function Sidebar() {
       </nav>
 
       <button 
-        onClick={logout}
+        onClick={handleLogout}
         className="mt-auto flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-500/10 transition-all font-bold text-sm"
       >
         <LogOut size={18} />
