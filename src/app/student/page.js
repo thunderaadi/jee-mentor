@@ -13,7 +13,8 @@ import {
   BookOpen, 
   Calendar, 
   ChevronRight, 
-  Trophy 
+  Trophy,
+  Clock
 } from 'lucide-react'
 
 export default function StudentDashboard() {
@@ -114,14 +115,14 @@ export default function StudentDashboard() {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
-          { icon: Target, label: 'Objectives', value: '4 / 6 Done', color: 'blue' },
-          { icon: TrendingUp, label: 'Velocity', value: '7 Day Streak', color: 'orange' },
-          { icon: Trophy, label: 'Rank', value: 'Aspirant', color: 'green' }
+          { icon: Target, label: 'Objectives', value: '4 / 6 Done', bg: 'bg-blue-600/10', text: 'text-blue-500', border: 'border-blue-500/20' },
+          { icon: TrendingUp, label: 'Velocity', value: '7 Day Streak', bg: 'bg-orange-600/10', text: 'text-orange-500', border: 'border-orange-500/20' },
+          { icon: Trophy, label: 'Rank', value: 'Aspirant', bg: 'bg-green-600/10', text: 'text-green-500', border: 'border-green-500/20' }
         ].map((stat, i) => {
           const Icon = stat.icon;
           return (
             <div key={i} className="glass-card p-6 flex items-center gap-6 transition-all hover:-translate-y-1">
-              <div className={`w-16 h-16 rounded-[20px] bg-${stat.color}-600/10 flex items-center justify-center text-${stat.color}-500 border border-${stat.color}-500/20 shadow-xl`}>
+              <div className={`w-16 h-16 rounded-[20px] ${stat.bg} flex items-center justify-center ${stat.text} border ${stat.border} shadow-xl`}>
                 <Icon size={32} />
               </div>
               <div>

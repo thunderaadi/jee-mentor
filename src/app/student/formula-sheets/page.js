@@ -76,7 +76,7 @@ export default function FormulaVault() {
         student_id: profile.uid,
         mentor_id: profile.mentor_id,
         subject,
-        file_url: url,
+        file_url: publicUrl,
         updated_at: serverTimestamp()
       };
 
@@ -120,7 +120,7 @@ export default function FormulaVault() {
                 
                 <h3 className="text-xl font-black text-white uppercase tracking-tight mb-2">{sub.label}</h3>
                 <p className="text-xs text-gray-500 font-bold mb-8 uppercase tracking-widest">
-                  {sheet ? `Last updated: ${new Date(sheet.updated_at?.toDate()).toLocaleDateString()}` : 'No image uploaded yet'}
+                  {sheet ? `Last updated: ${sheet.updated_at?.toDate ? new Date(sheet.updated_at.toDate()).toLocaleDateString() : 'Just now'}` : 'No image uploaded yet'}
                 </p>
 
                 <div className="w-full mt-auto space-y-4">
