@@ -40,6 +40,7 @@ export default function FormulaVault() {
   }, [profile])
 
   const loadSheets = async () => {
+    if (!profile) return;
     try {
       const q = query(collection(db, "formula_sheets"), where("student_id", "==", profile.uid));
       const snap = await getDocs(q);

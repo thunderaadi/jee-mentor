@@ -27,6 +27,7 @@ export default function MentorFormulaView() {
   }, [user])
 
   const loadAllData = async () => {
+    if (!user) return;
     setLoading(true)
     try {
       // 1. Fetch all students for this mentor

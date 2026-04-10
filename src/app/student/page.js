@@ -29,6 +29,7 @@ export default function StudentDashboard() {
   }, [profile])
 
   const loadDashboard = async () => {
+    if (!profile) return;
     try {
       // Fetch Recent Tests
       const testsQ = query(

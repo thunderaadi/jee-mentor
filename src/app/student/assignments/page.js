@@ -61,6 +61,7 @@ export default function StudentAssignmentsPage() {
   }, [profile])
 
   const loadData = async () => {
+    if (!profile) return;
     setLoading(true)
     try {
       // Fetch Assignments for the student's mentor

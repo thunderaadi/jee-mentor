@@ -16,6 +16,7 @@ export default function MentorStudentsPage() {
   }, [user])
 
   const loadStudents = async () => {
+    if (!user) return;
     setLoading(true)
     try {
       const q = query(
