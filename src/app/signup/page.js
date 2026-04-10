@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { db } from '@/lib/firebase'
 import { collection, query, where, getDocs } from 'firebase/firestore'
@@ -160,7 +161,7 @@ export default function SignupPage() {
             <button type="submit" disabled={loading} className="btn-primary py-4.5">
               {loading ? <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" /> : <>Join {role === 'mentor' ? 'as Mentor' : 'Academy'} <ArrowRight size={20} /></>}
             </button>
-            <p className="text-center text-sm text-gray-500">Member? <a href="/login" className="text-blue-500 font-bold">Sign In</a></p>
+            <p className="text-center text-sm text-gray-500">Member? <Link href="/login" className="text-blue-500 font-bold">Sign In</Link></p>
           </form>
         )}
       </div>

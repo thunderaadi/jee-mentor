@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Link } from 'next/link'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { Sparkles, Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react'
@@ -127,7 +127,7 @@ export default function LoginPage() {
           </button>
 
           <p className="text-center text-sm text-gray-400 font-medium">
-            New here? <a href="/signup" className="text-blue-500 hover:text-blue-400 font-bold underline underline-offset-4 decoration-blue-500/20">Create profile</a>
+            New here? <Link href="/signup" className="text-blue-500 hover:text-blue-400 font-bold underline underline-offset-4 decoration-blue-500/20">Create profile</Link>
           </p>
         </form>
       </div>
