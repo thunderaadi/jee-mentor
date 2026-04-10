@@ -20,20 +20,16 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      console.log("Auth State Changed. User:", user?.email);
       if (user) {
         setUser(user);
         try {
           const docRef = doc(db, "users", user.uid);
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
-            console.log("Profile Found:", docSnap.data().role);
             setProfile(docSnap.data());
-          } else {
-            console.warn("No Firestore profile for user:", user.uid);
           }
         } catch (err) {
-          console.error("Firestore Error:", err);
+          console.error("Session Sync Error:", err);
         }
       } else {
         setUser(null);
