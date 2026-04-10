@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import StudentSidebar from "@/components/student/Sidebar";
+import bgImage from '@/../carousel-1.jpg'
 
 export default function StudentLayout({ children }) {
   const { user, profile, loading } = useAuth()
@@ -25,7 +26,11 @@ export default function StudentLayout({ children }) {
   return (
     <div className="flex flex-col md:flex-row bg-black min-h-screen">
       <StudentSidebar />
-      <main className="flex-1 p-5 md:p-10 pt-20 md:pt-10 overflow-auto w-full max-w-[100vw]">
+      <main className="flex-1 p-5 md:p-10 pt-20 md:pt-10 overflow-auto w-full max-w-[100vw] relative z-0">
+        <div 
+          className="fixed inset-0 z-[-1] bg-cover bg-center opacity-[0.08]" 
+          style={{ backgroundImage: `url(${bgImage.src})` }}
+        />
         {children}
       </main>
     </div>
