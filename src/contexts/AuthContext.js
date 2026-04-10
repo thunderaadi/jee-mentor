@@ -5,7 +5,8 @@ import {
   signInWithEmailAndPassword, 
   signOut,
   createUserWithEmailAndPassword,
-  updateProfile
+  updateProfile,
+  sendPasswordResetEmail
 } from 'firebase/auth';
 import { auth, db } from '../lib/firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
@@ -41,6 +42,8 @@ export function AuthProvider({ children }) {
   
   const logout = () => signOut(auth);
 
+  const resetPassword = (email) => sendPasswordResetEmail(auth, email);
+
   const signup = async (email, password, fullName, role, mentorId = null) => {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
@@ -61,7 +64,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, profile, login, logout, signup, loading }}>
+    <AuthContext.Provider value={{ user, profile, login, logout, signup, resetPassword, loading }}>
       {!loading && children}
     </AuthContext.Provider>
   );

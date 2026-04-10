@@ -10,7 +10,8 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const { login } = useAuth()
+  const [resetSent, setResetSent] = useState(false)
+  const { login, resetPassword } = useAuth()
   const router = useRouter()
 
   const handleSubmit = async (e) => {
@@ -27,6 +28,18 @@ export default function LoginPage() {
       setError(err.message || 'Failed to sign in')
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleReset = async () => {
+    if (!email) return setError('Please enter your email first.')
+    setError('')
+    try {
+      await resetPassword(email)
+      setResetSent(true)
+      setTimeout(() => setResetSent(false), 5000)
+    } catch (err) {
+      setError(err.message || 'Reset failed')
     }
   }
 
@@ -49,6 +62,13 @@ export default function LoginPage() {
             <div className="p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs flex items-center gap-3">
               <AlertCircle size={18} />
               <span className="font-semibold">{error}</span>
+            </div>
+          )}
+
+          {resetSent && (
+            <div className="p-4 rounded-2xl bg-green-500/10 border border-green-500/20 text-green-400 text-xs flex items-center gap-3">
+              <AlertCircle size={18} />
+              <span className="font-semibold">Reset link sent to your email!</span>
             </div>
           )}
 
@@ -81,6 +101,13 @@ export default function LoginPage() {
                   required
                 />
               </div>
+              <button 
+                type="button" 
+                onClick={handleReset}
+                className="text-[10px] font-bold text-gray-600 hover:text-blue-500 mt-2 text-right transition-colors"
+              >
+                Forgot password?
+              </button>
             </div>
           </div>
 
