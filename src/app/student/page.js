@@ -61,6 +61,9 @@ export default function StudentDashboard() {
       setTodayTasks(tasksSnap.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     } catch (err) {
       console.error("Dashboard error:", err);
+      if (err.message.includes("index")) {
+        alert("Dashboard Sync: " + err.message);
+      }
     } finally {
       setLoading(false)
     }
@@ -116,9 +119,9 @@ export default function StudentDashboard() {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
-          { icon: Target, label: 'Objectives', value: '4 / 6 Done', bg: 'bg-blue-600/10', text: 'text-blue-500', border: 'border-blue-500/20' },
-          { icon: TrendingUp, label: 'Velocity', value: '7 Day Streak', bg: 'bg-orange-600/10', text: 'text-orange-500', border: 'border-orange-500/20' },
-          { icon: Trophy, label: 'Rank', value: 'Aspirant', bg: 'bg-green-600/10', text: 'text-green-500', border: 'border-green-500/20' }
+          { icon: Target, label: 'Objectives', value: `${todayTasks.length} Assigned`, bg: 'bg-blue-600/10', text: 'text-blue-500', border: 'border-blue-500/20' },
+          { icon: TrendingUp, label: 'Materials', value: `${recentMaterials.length} Shared`, bg: 'bg-orange-600/10', text: 'text-orange-500', border: 'border-orange-500/20' },
+          { icon: Trophy, label: 'Upcoming Tests', value: `${upcomingTests.length} Scheduled`, bg: 'bg-green-600/10', text: 'text-green-500', border: 'border-green-500/20' }
         ].map((stat, i) => {
           const Icon = stat.icon;
           return (
