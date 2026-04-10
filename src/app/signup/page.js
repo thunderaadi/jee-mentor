@@ -9,6 +9,7 @@ import { Mail, Lock, User, UserPlus, CheckCircle2, AlertCircle, ChevronDown, Sea
 export default function SignupPage() {
   const router = useRouter()
   const { signup } = useAuth()
+  const [role, setRole] = useState('student')
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -40,13 +41,14 @@ export default function SignupPage() {
 
   const handleSignup = async (e) => {
     e.preventDefault()
-    if (!mentorId) return setError('Please choose a mentor.')
+    if (role === 'student' && !mentorId) return setError('Please choose a mentor.')
     
     setLoading(true)
     setError('')
 
     try {
-      await signup(email, password, fullName, 'student', mentorId)
+      // For mentors, mentorId is passed as null
+      await signup(email, password, fullName, role, role === 'mentor' ? null : mentorId)
       setSuccess(true)
       setTimeout(() => router.push('/login'), 2000)
     } catch (err) {
@@ -89,6 +91,24 @@ export default function SignupPage() {
               </div>
             )}
 
+            {/* Role Switcher */}
+            <div className="flex p-1 bg-white/5 rounded-2xl border border-white/5">
+              <button 
+                type="button"
+                onClick={() => setRole('student')}
+                className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${role === 'student' ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-500 hover:text-white'}`}
+              >
+                Student
+              </button>
+              <button 
+                type="button"
+                onClick={() => setRole('mentor')}
+                className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${role === 'mentor' ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-500 hover:text-white'}`}
+              >
+                Mentor
+              </button>
+            </div>
+
             <div className="flex flex-col gap-5 bg-[#080c1d]/40 p-8 rounded-[32px] border border-white/5 backdrop-blur-xl shadow-inner">
               <div className="flex flex-col gap-2">
                 <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest px-1">Identity</label>
@@ -110,33 +130,35 @@ export default function SignupPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-2 relative">
-                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest px-1">Mentor Support</label>
-                <button type="button" onClick={() => setShowMentorDropdown(!showMentorDropdown)} className="flex items-center justify-between bg-black/40 border border-white/5 rounded-2xl px-5 py-3.5 text-sm text-gray-400 transition-all hover:border-blue-500/30">
-                  <span>{selectedMentor ? selectedMentor.full_name : 'Select a Mentor'}</span>
-                  <ChevronDown className={`transition-transform ${showMentorDropdown ? 'rotate-180' : ''}`} size={18} />
-                </button>
+              {role === 'student' && (
+                <div className="flex flex-col gap-2 relative">
+                  <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest px-1">Mentor Support</label>
+                  <button type="button" onClick={() => setShowMentorDropdown(!showMentorDropdown)} className="flex items-center justify-between bg-black/40 border border-white/5 rounded-2xl px-5 py-3.5 text-sm text-gray-400 transition-all hover:border-blue-500/30">
+                    <span>{selectedMentor ? selectedMentor.full_name : 'Select a Mentor'}</span>
+                    <ChevronDown className={`transition-transform ${showMentorDropdown ? 'rotate-180' : ''}`} size={18} />
+                  </button>
 
-                {showMentorDropdown && (
-                  <div className="absolute top-[105%] left-0 right-0 bg-[#0d152a] border border-blue-500/20 rounded-2xl shadow-2xl p-3 z-50 animate-fade-in scale-in">
-                    <div className="flex items-center bg-black/20 rounded-xl px-3 py-2 mb-2">
-                      <Search size={14} className="text-gray-600" />
-                      <input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search..." className="flex-1 bg-transparent border-none outline-none text-xs px-2 text-white" />
+                  {showMentorDropdown && (
+                    <div className="absolute top-[105%] left-0 right-0 bg-[#0d152a] border border-blue-500/20 rounded-2xl shadow-2xl p-3 z-50 animate-fade-in scale-in">
+                      <div className="flex items-center bg-black/20 rounded-xl px-3 py-2 mb-2">
+                        <Search size={14} className="text-gray-600" />
+                        <input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search..." className="flex-1 bg-transparent border-none outline-none text-xs px-2 text-white" />
+                      </div>
+                      <div className="max-h-40 overflow-y-auto custom-scroll">
+                        {filteredMentors.map(m => (
+                          <div key={m.id} onClick={() => { setMentorId(m.id); setShowMentorDropdown(false) }} className={`px-4 py-2.5 rounded-lg text-xs cursor-pointer transition-colors ${mentorId === m.id ? 'bg-blue-600 text-white font-bold' : 'text-gray-400 hover:bg-white/5'}`}>
+                            {m.full_name}
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className="max-h-40 overflow-y-auto custom-scroll">
-                      {filteredMentors.map(m => (
-                        <div key={m.id} onClick={() => { setMentorId(m.id); setShowMentorDropdown(false) }} className={`px-4 py-2.5 rounded-lg text-xs cursor-pointer transition-colors ${mentorId === m.id ? 'bg-blue-600 text-white font-bold' : 'text-gray-400 hover:bg-white/5'}`}>
-                          {m.full_name}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
+              )}
             </div>
 
             <button type="submit" disabled={loading} className="btn-primary py-4.5">
-              {loading ? <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" /> : <>Access Academy <ArrowRight size={20} /></>}
+              {loading ? <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" /> : <>Join {role === 'mentor' ? 'as Mentor' : 'Academy'} <ArrowRight size={20} /></>}
             </button>
             <p className="text-center text-sm text-gray-500">Member? <a href="/login" className="text-blue-500 font-bold">Sign In</a></p>
           </form>
