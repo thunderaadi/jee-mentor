@@ -47,10 +47,10 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center p-6 bg-black relative overflow-hidden">
       {/* Dynamic Background */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-[0.15]" 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" 
         style={{ backgroundImage: `url(${sparkImage.src})` }}
       />
-      <div className="absolute inset-0 z-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
+      <div className="absolute inset-0 z-0 bg-black/40" /> {/* Slight dark tint for text readability */}
       
       <div className="fixed top-[-15%] right-[-10%] w-[550px] h-[550px] rounded-full bg-blue-600/10 blur-[130px] pointer-events-none z-0" />
       <div className="fixed bottom-[-10%] left-[-5%] w-[450px] h-[450px] rounded-full bg-blue-700/5 blur-[100px] pointer-events-none z-0" />
@@ -79,32 +79,32 @@ export default function LoginPage() {
             </div>
           )}
 
-          <div className="flex flex-col gap-6 bg-[#080c1d]/60 p-8 rounded-[32px] border border-white/[0.05] shadow-2xl">
+          <div className="flex flex-col gap-6 bg-black/20 backdrop-blur-2xl p-8 rounded-[32px] border border-white/20 shadow-2xl">
             <div className="flex flex-col gap-2.5">
-              <label className="text-[10px] font-black text-blue-400/80 uppercase tracking-[0.2em] px-1">Email Account</label>
-              <div className="flex items-center bg-black/40 border border-white/10 rounded-2xl px-4 focus-within:border-blue-500/50 transition-all">
-                <Mail className="text-gray-500" size={18} />
+              <label className="text-[10px] font-black text-white/90 uppercase tracking-[0.2em] px-1 drop-shadow-md">Email Account</label>
+              <div className="flex items-center bg-black/30 border border-white/20 rounded-2xl px-4 focus-within:border-blue-400 focus-within:bg-black/40 transition-all">
+                <Mail className="text-gray-300" size={18} />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@example.com"
-                  className="w-full bg-transparent py-4.5 px-3 text-white placeholder-gray-700 outline-none text-sm font-medium"
+                  className="w-full bg-transparent py-4.5 px-3 text-white placeholder-gray-400 outline-none text-sm font-medium"
                   required
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-2.5">
-              <label className="text-[10px] font-black text-blue-400/80 uppercase tracking-[0.2em] px-1">Secure Key</label>
-              <div className="flex items-center bg-black/40 border border-white/10 rounded-2xl px-4 focus-within:border-blue-500/50 transition-all">
-                <Lock className="text-gray-500" size={18} />
+              <label className="text-[10px] font-black text-white/90 uppercase tracking-[0.2em] px-1 drop-shadow-md">Secure Key</label>
+              <div className="flex items-center bg-black/30 border border-white/20 rounded-2xl px-4 focus-within:border-blue-400 focus-within:bg-black/40 transition-all">
+                <Lock className="text-gray-300" size={18} />
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-transparent py-4.5 px-3 text-white placeholder-gray-700 outline-none text-sm font-medium"
+                  className="w-full bg-transparent py-4.5 px-3 text-white placeholder-gray-400 outline-none text-sm font-medium"
                   required
                 />
               </div>
