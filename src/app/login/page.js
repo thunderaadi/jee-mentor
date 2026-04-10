@@ -79,10 +79,10 @@ export default function LoginPage() {
             </div>
           )}
 
-          <div className="flex flex-col gap-6 bg-black/20 backdrop-blur-2xl p-8 rounded-[32px] border border-white/20 shadow-2xl">
+          <div className="flex flex-col gap-6 bg-black/10 backdrop-blur-md p-8 rounded-[32px] border border-white/20 shadow-2xl">
             <div className="flex flex-col gap-2.5">
               <label className="text-[10px] font-black text-white/90 uppercase tracking-[0.2em] px-1 drop-shadow-md">Email Account</label>
-              <div className="flex items-center bg-black/30 border border-white/20 rounded-2xl px-4 focus-within:border-blue-400 focus-within:bg-black/40 transition-all">
+              <div className="flex items-center bg-black/20 border border-white/20 rounded-2xl px-4 focus-within:border-blue-400 focus-within:bg-black/40 transition-all">
                 <Mail className="text-gray-300" size={18} />
                 <input
                   type="email"
@@ -97,7 +97,7 @@ export default function LoginPage() {
 
             <div className="flex flex-col gap-2.5">
               <label className="text-[10px] font-black text-white/90 uppercase tracking-[0.2em] px-1 drop-shadow-md">Secure Key</label>
-              <div className="flex items-center bg-black/30 border border-white/20 rounded-2xl px-4 focus-within:border-blue-400 focus-within:bg-black/40 transition-all">
+              <div className="flex items-center bg-black/20 border border-white/20 rounded-2xl px-4 focus-within:border-blue-400 focus-within:bg-black/40 transition-all">
                 <Lock className="text-gray-300" size={18} />
                 <input
                   type="password"

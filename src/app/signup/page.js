@@ -7,7 +7,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore'
 import { useAuth } from '@/contexts/AuthContext'
 import { Mail, Lock, User, UserPlus, CheckCircle2, AlertCircle, ChevronDown, Search, ArrowRight } from 'lucide-react'
 
-import sparkImage from '@/../IIT_Roorkee.jpg'
+import sparkImage from '@/../0199f88e-9bbd-4f15-bd8c-623a5c69d8f7_1280x712.jpg'
 
 export default function SignupPage() {
   const router = useRouter()
@@ -120,10 +120,10 @@ export default function SignupPage() {
               </button>
             </div>
 
-            <div className="flex flex-col gap-5 bg-black/20 p-8 rounded-[32px] border border-white/20 backdrop-blur-2xl shadow-2xl">
+            <div className="flex flex-col gap-5 bg-black/10 p-8 rounded-[32px] border border-white/20 backdrop-blur-md shadow-2xl">
               <div className="flex flex-col gap-2">
                 <label className="text-[10px] font-black text-white/90 uppercase tracking-widest px-1 drop-shadow-md">Identity</label>
-                <div className="flex items-center bg-black/30 border border-white/20 rounded-2xl px-4 py-3.5 focus-within:border-blue-400 focus-within:bg-black/40 transition-all">
+                <div className="flex items-center bg-black/20 border border-white/20 rounded-2xl px-4 py-3.5 focus-within:border-blue-400 focus-within:bg-black/40 transition-all">
                   <User size={18} className="text-gray-300" />
                   <input value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Full Name" required className="flex-1 bg-transparent border-none outline-none text-white placeholder-gray-400 px-3 text-sm" />
                 </div>
@@ -131,11 +131,11 @@ export default function SignupPage() {
 
               <div className="flex flex-col gap-2">
                 <label className="text-[10px] font-black text-white/90 uppercase tracking-widest px-1 drop-shadow-md">Credentials</label>
-                <div className="flex items-center bg-black/30 border border-white/20 rounded-2xl px-4 py-3.5 mb-2 focus-within:border-blue-400 focus-within:bg-black/40 transition-all">
+                <div className="flex items-center bg-black/20 border border-white/20 rounded-2xl px-4 py-3.5 mb-2 focus-within:border-blue-400 focus-within:bg-black/40 transition-all">
                   <Mail size={18} className="text-gray-300" />
                   <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required className="flex-1 bg-transparent border-none outline-none text-white placeholder-gray-400 px-3 text-sm" />
                 </div>
-                <div className="flex items-center bg-black/30 border border-white/20 rounded-2xl px-4 py-3.5 focus-within:border-blue-400 focus-within:bg-black/40 transition-all">
+                <div className="flex items-center bg-black/20 border border-white/20 rounded-2xl px-4 py-3.5 focus-within:border-blue-400 focus-within:bg-black/40 transition-all">
                   <Lock size={18} className="text-gray-300" />
                   <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required className="flex-1 bg-transparent border-none outline-none text-white placeholder-gray-400 px-3 text-sm" />
                 </div>
@@ -144,7 +144,7 @@ export default function SignupPage() {
               {role === 'student' && (
                 <div className="flex flex-col gap-2 relative">
                   <label className="text-[10px] font-black text-white/90 uppercase tracking-widest px-1 drop-shadow-md">Mentor Support</label>
-                  <button type="button" onClick={() => setShowMentorDropdown(!showMentorDropdown)} className="flex items-center justify-between bg-black/30 border border-white/20 rounded-2xl px-5 py-3.5 text-sm text-gray-300 transition-all hover:border-blue-400 hover:bg-black/40">
+                  <button type="button" onClick={() => setShowMentorDropdown(!showMentorDropdown)} className="flex items-center justify-between bg-black/20 border border-white/20 rounded-2xl px-5 py-3.5 text-sm text-gray-300 transition-all hover:border-blue-400 hover:bg-black/40">
                     <span>{selectedMentor ? selectedMentor.full_name : 'Select a Mentor'}</span>
                     <ChevronDown className={`transition-transform ${showMentorDropdown ? 'rotate-180' : ''}`} size={18} />
                   </button>
