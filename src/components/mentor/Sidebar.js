@@ -8,7 +8,8 @@ import {
   CheckSquare, 
   BookOpen, 
   GraduationCap, 
-  LogOut 
+  LogOut,
+  Sparkles
 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 
