@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { Sparkles, Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react'
 
+import sparkImage from '@/../IIT_Roorkee.jpg' // Using specific uploaded asset
+
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -21,8 +23,6 @@ export default function LoginPage() {
 
     try {
       const { user } = await login(email, password)
-      // Next.js handled AuthContext will update profile automatically
-      // We wait a beat for profile to sync or just push to home
       router.push('/')
     } catch (err) {
       setError(err.message || 'Failed to sign in')
@@ -44,9 +44,16 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-[#000000] relative overflow-hidden">
-      <div className="fixed top-[-15%] right-[-10%] w-[550px] h-[550px] rounded-full bg-blue-600/10 blur-[130px] pointer-events-none" />
-      <div className="fixed bottom-[-10%] left-[-5%] w-[450px] h-[450px] rounded-full bg-blue-700/5 blur-[100px] pointer-events-none" />
+    <div className="min-h-screen flex items-center justify-center p-6 bg-black relative overflow-hidden">
+      {/* Dynamic Background */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-[0.15]" 
+        style={{ backgroundImage: `url(${sparkImage.src})` }}
+      />
+      <div className="absolute inset-0 z-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
+      
+      <div className="fixed top-[-15%] right-[-10%] w-[550px] h-[550px] rounded-full bg-blue-600/10 blur-[130px] pointer-events-none z-0" />
+      <div className="fixed bottom-[-10%] left-[-5%] w-[450px] h-[450px] rounded-full bg-blue-700/5 blur-[100px] pointer-events-none z-0" />
 
       <div className="w-full max-w-[420px] relative z-10 animate-fade-in text-center">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 mb-6 shadow-[0_0_40px_rgba(37,99,235,0.3)] border border-blue-400/30">

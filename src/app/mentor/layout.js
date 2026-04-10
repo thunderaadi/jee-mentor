@@ -23,9 +23,9 @@ export default function MentorLayout({ children }) {
   }
 
   return (
-    <div className="flex bg-black min-h-screen">
+    <div className="flex flex-col md:flex-row bg-black min-h-screen">
       <Sidebar />
-      <main className="flex-1 p-10 overflow-auto">
+      <main className="flex-1 p-5 md:p-10 pt-20 md:pt-10 overflow-auto w-full max-w-[100vw]">
         {children}
       </main>
     </div>

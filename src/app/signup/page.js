@@ -7,6 +7,8 @@ import { collection, query, where, getDocs } from 'firebase/firestore'
 import { useAuth } from '@/contexts/AuthContext'
 import { Mail, Lock, User, UserPlus, CheckCircle2, AlertCircle, ChevronDown, Search, ArrowRight } from 'lucide-react'
 
+import sparkImage from '@/../IIT_Roorkee.jpg'
+
 export default function SignupPage() {
   const router = useRouter()
   const { signup } = useAuth()
@@ -68,8 +70,15 @@ export default function SignupPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-black relative overflow-hidden font-sans">
-      <div className="fixed top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-blue-900/10 blur-[120px] pointer-events-none" />
-      <div className="fixed bottom-[-5%] left-[-5%] w-[400px] h-[400px] rounded-full bg-blue-900/5 blur-[100px] pointer-events-none" />
+      {/* Dynamic Background */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-[0.15]" 
+        style={{ backgroundImage: `url(${sparkImage.src})` }}
+      />
+      <div className="absolute inset-0 z-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
+      
+      <div className="fixed top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-blue-900/10 blur-[120px] pointer-events-none z-0" />
+      <div className="fixed bottom-[-5%] left-[-5%] w-[400px] h-[400px] rounded-full bg-blue-900/5 blur-[100px] pointer-events-none z-0" />
 
       <div className="w-full max-w-[440px] relative z-10 animate-fade-in">
         <div className="text-center mb-10">

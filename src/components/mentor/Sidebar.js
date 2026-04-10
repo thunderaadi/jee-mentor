@@ -1,4 +1,5 @@
 'use client'
+import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { 
@@ -10,11 +11,14 @@ import {
   GraduationCap, 
   LogOut,
   Sparkles,
-  MessageSquare
+  MessageSquare,
+  Menu,
+  X
 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 
 export default function Sidebar() {
+  const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
   const { logout } = useAuth()
@@ -40,7 +44,22 @@ export default function Sidebar() {
   ]
 
   return (
-    <aside className="w-64 border-r border-white/5 bg-black h-screen flex flex-col p-6 sticky top-0 overflow-hidden">
+    <>
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="md:hidden fixed top-4 right-4 z-50 w-10 h-10 bg-black border border-white/10 rounded-xl flex items-center justify-center text-white shadow-xl hover:bg-white/5 transition-all"
+      >
+        {isOpen ? <X size={20} /> : <Menu size={20} />}
+      </button>
+
+      {isOpen && (
+        <div 
+          className="md:hidden fixed inset-0 bg-black/80 z-40 backdrop-blur-sm"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      <aside className={`fixed md:sticky top-0 left-0 h-screen w-64 border-r border-white/5 bg-black flex flex-col p-6 z-50 overflow-hidden transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
       <div className="flex items-center gap-3 mb-10 px-2">
         <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white shadow-lg shadow-blue-500/20">M</div>
         <span className="font-black text-white uppercase tracking-widest text-sm">Mentor<span className="text-blue-500">Node</span></span>
@@ -54,6 +73,7 @@ export default function Sidebar() {
             <Link 
               key={link.name} 
               href={link.href}
+              onClick={() => setIsOpen(false)}
               className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                 isActive 
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/10' 
@@ -74,6 +94,7 @@ export default function Sidebar() {
         <LogOut size={18} />
         Log Out
       </button>
-    </aside>
+      </aside>
+    </>
   )
 }
