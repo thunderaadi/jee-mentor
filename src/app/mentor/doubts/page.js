@@ -27,7 +27,10 @@ export default function MentorDoubtsPage() {
       const snap = await getDocs(q);
       setDoubts(snap.docs.map(d => ({ id: d.id, ...d.data() })));
     } catch (err) {
-      console.error(err)
+      console.error("Doubt error:", err)
+      if (err.message.includes("index")) {
+        alert("Doubt Sync (Mentor): " + err.message);
+      }
     } finally {
       setLoading(false)
     }

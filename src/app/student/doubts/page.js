@@ -27,7 +27,10 @@ export default function StudentDoubtsPage() {
       const snap = await getDocs(q);
       setDoubts(snap.docs.map(d => ({ id: d.id, ...d.data() })));
     } catch (err) {
-      console.error(err)
+      console.error("Doubt error:", err)
+      if (err.message.includes("index")) {
+        alert("Doubt Sync (Student): " + err.message);
+      }
     } finally {
       setLoading(false)
     }
