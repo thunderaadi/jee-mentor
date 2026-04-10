@@ -25,7 +25,10 @@ export default function StudentTasksPage() {
       const snap = await getDocs(q);
       setTasks(snap.docs.map(d => ({ id: d.id, ...d.data() })));
     } catch (err) {
-      console.error(err)
+      console.error("Task error:", err)
+      if (err.message.includes("index")) {
+        alert("Task Sync: " + err.message);
+      }
     } finally {
       setLoading(false)
     }
