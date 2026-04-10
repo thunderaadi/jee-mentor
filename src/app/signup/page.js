@@ -37,6 +37,7 @@ export default function SignupPage() {
       setMentors(mentorsList)
     } catch (err) {
       console.error("Error fetching mentors:", err);
+      alert("Mentor Sync: " + err.message);
     }
   }
 
