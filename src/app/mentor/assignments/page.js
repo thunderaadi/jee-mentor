@@ -25,7 +25,8 @@ import {
   Upload, 
   FileDown, 
   Loader2, 
-  X 
+  X,
+  ArrowRight
 } from 'lucide-react'
 
 // Simple Modal Component
