@@ -1,3 +1,16 @@
 {
-  "/login/page": "app/login/page.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/login/page": "app/login/page.js",
+  "/signup/page": "app/signup/page.js",
+  "/page": "app/page.js",
+  "/mentor/assignments/page": "app/mentor/assignments/page.js",
+  "/mentor/students/page": "app/mentor/students/page.js",
+  "/mentor/tasks/page": "app/mentor/tasks/page.js",
+  "/mentor/materials/page": "app/mentor/materials/page.js",
+  "/mentor/tests/page": "app/mentor/tests/page.js",
+  "/student/formula-sheets/page": "app/student/formula-sheets/page.js",
+  "/mentor/formula-sheets/page": "app/mentor/formula-sheets/page.js",
+  "/student/materials/page": "app/student/materials/page.js",
+  "/student/page": "app/student/page.js",
+  "/student/assignments/page": "app/student/assignments/page.js"
 }

@@ -1,1 +1,21 @@
-{}
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/Login": "pages/Login.js",
+  "/mentor/Assignments": "pages/mentor/Assignments.js",
+  "/Signup": "pages/Signup.js",
+  "/mentor/Doubts": "pages/mentor/Doubts.js",
+  "/mentor/Dashboard": "pages/mentor/Dashboard.js",
+  "/mentor/Materials": "pages/mentor/Materials.js",
+  "/mentor/Students": "pages/mentor/Students.js",
+  "/student/Dashboard": "pages/student/Dashboard.js",
+  "/mentor/Tests": "pages/mentor/Tests.js",
+  "/student/Assignments": "pages/student/Assignments.js",
+  "/mentor/Tasks": "pages/mentor/Tasks.js",
+  "/student/Materials": "pages/student/Materials.js",
+  "/student/Notes": "pages/student/Notes.js",
+  "/student/Doubts": "pages/student/Doubts.js",
+  "/student/Tasks": "pages/student/Tasks.js",
+  "/student/Tests": "pages/student/Tests.js",
+  "/_document": "pages/_document.js"
+}
